@@ -1,4 +1,7 @@
 import flet as ft 
+from openai import OpenAI
+client = OpenAI()
+
 
 def main(page: ft.Page):
     page.title = "Chat with JASC"
@@ -24,9 +27,17 @@ def main(page: ft.Page):
     def send_message(e):
         if input_field.value:
             chat_area.controls.append(ft.Text(f"Tú: {input_field.value}"))
-
+            
+            completion = client.chat.completions.create(
+            model="gpt-4o",
+            messages=[
+                {"role": "developer", "content": "You should give advices to solve the user's issues without direct answers or solving the question yourself"},
+                {"role": "user", "content": "{input_field.value}"}
+            ]
+            )
+            chat_area.controls.append(ft.Text(completion.choices[0].message)) # ai's response
             #! Aquí iría la lógica para obtener la respuesta de la IA
-            chat_area.controls.append(ft.Text(f"AI: Simulated response"))
+            # chat_area.controls.append(ft.Text(f"AI: Simulated response"))
             input_field.value = ""
             page.update()
 
@@ -54,3 +65,5 @@ def main(page: ft.Page):
 
 
 ft.app(target=main)
+
+# Flet Hot reload command --> flet run main.py
