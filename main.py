@@ -1,6 +1,6 @@
 import flet as ft 
 from openai import OpenAI
-client = OpenAI()
+client = OpenAI("")
 
 
 def main(page: ft.Page):
