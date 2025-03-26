@@ -1,6 +1,7 @@
 import flet as ft 
 from openai import OpenAI
-client = OpenAI("")
+client = OpenAI(api_key="THE API KEY")
+#! REMEMBER TO DELETE API KEY BEFORE PUSHING TO GITHUB!!!!!!!!!
 
 
 def main(page: ft.Page):
