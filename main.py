@@ -14,15 +14,9 @@ def main(page: ft.Page):
         expand=True,
         spacing=10,
     )
-    
-    #!entrada
-    input_field = ft.TextField(
-        hint_text="Write your message",
-        expand=True
-    )
 
     #! Botón de envío
-    send_button = ft.ElevatedButton("Send")
+    send_button = ft.IconButton("Send")
 
     #! Función para el envío de mensajes
     def send_message(e):
@@ -41,6 +35,13 @@ def main(page: ft.Page):
             # chat_area.controls.append(ft.Text(f"AI: Simulated response"))
             input_field.value = ""
             page.update()
+    
+    #!entrada
+    input_field = ft.TextField(
+        hint_text="Write your message",
+        expand=True,
+        on_submit=send_message
+    )
 
     send_button.on_click = send_message
     
