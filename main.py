@@ -27,16 +27,16 @@ def main(page: ft.Page):
     #! Función para el envío de mensajes
     def send_message(e):
         if input_field.value:
-            chat_area.controls.append(ft.Text(f"Tú: {input_field.value}"))
+            chat_area.controls.append(ft.Text(f"You: {input_field.value}"))
             
             completion = client.chat.completions.create(
             model="gpt-4o",
             messages=[
                 {"role": "developer", "content": "You should give advices to solve the user's issues without direct answers or solving the question yourself"},
-                {"role": "user", "content": "{input_field.value}"}
+                {"role": "user", "content": f"{input_field.value}"}
             ]
             )
-            chat_area.controls.append(ft.Text(completion.choices[0].message)) # ai's response
+            chat_area.controls.append(ft.Text(f"JASC: {completion.choices[0].message.content}")) # ai's response
             #! Aquí iría la lógica para obtener la respuesta de la IA
             # chat_area.controls.append(ft.Text(f"AI: Simulated response"))
             input_field.value = ""
