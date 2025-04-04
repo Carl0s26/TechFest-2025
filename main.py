@@ -20,7 +20,6 @@ def main(page: ft.Page):
     )
 
     def handle_brightness_change(e):
-        print(page.platform_brightness)
         if page.platform_brightness == ft.Brightness.DARK:
             background_image.content.src = "dark.png"
         else:
@@ -72,8 +71,8 @@ def main(page: ft.Page):
             completion = client.chat.completions.create(
             model="gpt-4o",
             messages=[
-                {"role": "developer", "content": "You should give advices to solve the user's issues without direct answers or solving the question yourself"},
-                {"role": "user", "content": f"{input_field.value}"}
+                {"role": "developer", "content": "Your name is JASC, a very helpful assistant. You should give advices to solve the user's issues without direct answers or solving the question yourself"},
+                {"role": "user", "content": f"{input_field.value}"},
             ]
             )
             chat_area.controls.append(ft.Text(f"JASC: ")) # ai's response
