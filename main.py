@@ -4,8 +4,6 @@ import time as time
 import flet_audio as fta
 client = OpenAI(api_key="API KEY")
 import threading
-#! REMEMBER TO DELETE API KEY BEFORE PUSHING TO GITHUB!!!!!!!!!
-
 import json
 import os
 
@@ -40,7 +38,7 @@ def main(page: ft.Page):
     def slowPrint(textField, text):
         for i in range(len(text)):
             textField.value = f"{textField.value}{text[i]}"
-            time.sleep(0.003)
+            time.sleep(0.005)
             page.update()
 
     #!Area con el chat
@@ -75,9 +73,6 @@ def main(page: ft.Page):
             chat_area.controls.append(ft.Text(f"You: {current_text}"))
             page.update()
             input_field.value = ""
-            dot1 = ft.Container(width=8, height=8, bgcolor=ft.colors.GREY, border_radius=4, opacity=0.3)
-            dot2 = ft.Container(width=8, height=8, bgcolor=ft.colors.GREY, border_radius=4, opacity=0.3)
-            dot3 = ft.Container(width=8, height=8, bgcolor=ft.colors.GREY, border_radius=4, opacity=0.3)
             dot1 = ft.Container(width=8, height=8, bgcolor=ft.Colors.GREY, border_radius=4, opacity=0.3)
             dot2 = ft.Container(width=8, height=8, bgcolor=ft.Colors.GREY, border_radius=4, opacity=0.3)
             dot3 = ft.Container(width=8, height=8, bgcolor=ft.Colors.GREY, border_radius=4, opacity=0.3)
@@ -160,3 +155,5 @@ def main(page: ft.Page):
 
 
 ft.app(target=main, assets_dir="assets")
+
+# Flet Hot reload command --> flet run main.py
