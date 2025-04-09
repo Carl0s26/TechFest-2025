@@ -35,19 +35,12 @@ def main(page: ft.Page):
 
     audio_player = fta.Audio(src="scream.mp3", autoplay=False)
 
-    def slowPrint(textField, text):
-        for i in range(len(text)):
-            textField.value = f"{textField.value}{text[i]}"
-            time.sleep(0.005)
-            page.update()
-
     #!Area con el chat
     chat_area = ft.Column(
         scroll="auto",
         expand=True,
         spacing=10,
     )
-    
 
     full_area = ft.Stack(
         controls=[
@@ -108,8 +101,35 @@ def main(page: ft.Page):
                 stop_typing = True
                 page.update()
                 chat_area.controls.remove(thinking_row)
-                chat_area.controls.append(ft.Text("JASC: "))
-                slowPrint(chat_area.controls[-1], completion.choices[0].message.content)
+
+                ai_response = completion.choices[0].message.content
+                temp_text = ft.Text("")
+                response_row = ft.Row(
+                    controls=[
+                        ft.Text("JASC: "),
+                        temp_text
+                    ],
+                    wrap=True
+                )
+                chat_area.controls.append(response_row)
+                page.update()
+
+                #! Slow print
+                def slow_markdown_print(text, callback):
+                    for i in range(1, len(text) + 1):
+                        temp_text.value = text[:i]
+                        page.update()
+                        time.sleep(0.005)
+                    callback()
+
+                #! Cuando termina reemplaza por Markdown
+                def finalize_markdown():
+                    response_row.controls[1] = ft.Markdown(ai_response)
+                    page.update()
+
+                threading.Thread(target=lambda: slow_markdown_print(ai_response, finalize_markdown), daemon=True).start()
+
+            
                 history = [control.value for control in chat_area.controls if isinstance(control, ft.Text)]
                 with open(chat_file, "w") as f:
                     json.dump(history, f, indent=2)
@@ -152,7 +172,6 @@ def main(page: ft.Page):
         ),
         audio_player
     )
-
 
 ft.app(target=main, assets_dir="assets")
 
