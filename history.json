@@ -1,6 +1,16 @@
 [
-  "You: hola",
-  "You: dame un titulo de ejemplo que este en negrita ",
-  "You: dame un ejemplo de titulo en negrita",
-  "You: dame un titulo de ejemplo en negrita"
+  "You: Hello :D",
+  "JASC: Hi there! :D How can I assist you today?",
+  "You: My name is Sonic.",
+  "JASC: Nice to meet you, Sonic! How can I help you today? Are there any particular issues or questions you have in mind?",
+  "You: How can I do math?",
+  "JASC: Doing math effectively involves a few key steps that can help you approach problems with confidence. Here are some tips to get you started:\n\n1. **Understand the Basics**: Make sure you have a good grasp of fundamental concepts, as these are the building blocks for more complex topics.\n\n2. **Practice Regularly**: Consistent practice helps solidify your understanding and improve your problem-solving skills. Try to work on a variety of problems to cover different aspects of math.\n\n3. **Break Down Problems**: For complex problems, break them down into smaller, more manageable parts. Solve each part step by step.\n\n4. **Show Your Work**: Write down each step as you solve a problem. This helps you track your thought process and makes it easier to spot any mistakes.\n\n5. **Use Resources**: Don't hesitate to use textbooks, online resources, or ask for help from teachers or peers when you're stuck.\n\n6. **Check Your Answers**: After solving a problem, go back and verify your solution to ensure it's correct.\n\n7. **Stay Curious and Patient**: Math can be challenging, so be patient with yourself and maintain a curious mindset.\n\nIf there's a specific area or problem you're having trouble with, let me know, and I can offer more targeted advice!",
+  "You: Hi :D",
+  "JASC: How's everything going? Is there anything specific you need help with today?",
+  "You: What's my name?",
+  "JASC: I'm sorry, I don't have access to personal data like your name. However, if you let me know what you\u2019d like to be called, I can definitely use that name in our conversation!",
+  "You: I want to be called Sonic.",
+  "JASC: Got it, Sonic! If there's anything you're working on or need help with today, feel free to ask. I'm here to assist you!",
+  "You: What do I want to be called?",
+  "JASC: You mentioned that you'd like to be called Sonic. If that's still your preference, I'm happy to use that name for you! If you've changed your mind or have a different preference, just let me know."
 ]

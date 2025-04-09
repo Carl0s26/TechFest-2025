@@ -90,12 +90,16 @@ def main(page: ft.Page):
 
             def fetch_response():
                 nonlocal stop_typing
+                history = [control.value for control in chat_area.controls if isinstance(control, ft.Text)]
+                messages = [{"role": "system", "content": "Your name is JASC, a very helpful assistant. You should give advices to solve the user's issues without direct answers or solving the question yourself"}]
+                for i, msg in enumerate(history[-10:]):
+                    role = "user" if i % 2 == 0 else "assistant"
+                    messages.append({"role": role, "content": msg.replace("You: ", "").replace("JASC: ", "")})
+                messages.append({"role": "user", "content": current_text})
+
                 completion = client.chat.completions.create(
                     model="gpt-4o",
-                    messages=[
-                        {"role": "developer", "content": "Your name is JASC, a very helpful assistant. You should give advices to solve the user's issues without direct answers or solving the question yourself"},
-                        {"role": "user", "content": f"{current_text}"},
-                    ]
+                    messages=messages
                 )
 
                 stop_typing = True
