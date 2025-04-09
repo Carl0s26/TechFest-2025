@@ -4,9 +4,11 @@ import time as time
 import flet_audio as fta
 client = OpenAI(api_key="API KEY")
 import threading
+import json
+import os
+
+chat_file = "history.json"
 #! REMEMBER TO DELETE API KEY BEFORE PUSHING TO GITHUB!!!!!!!!!
-
-
 
 def main(page: ft.Page):
     page.title = "Chat with JASC"
@@ -69,10 +71,11 @@ def main(page: ft.Page):
             audio_player.play()
             current_text = input_field.value
             chat_area.controls.append(ft.Text(f"You: {current_text}"))
+            page.update()
             input_field.value = ""
-            dot1 = ft.Container(width=8, height=8, bgcolor=ft.colors.GREY, border_radius=4, opacity=0.3)
-            dot2 = ft.Container(width=8, height=8, bgcolor=ft.colors.GREY, border_radius=4, opacity=0.3)
-            dot3 = ft.Container(width=8, height=8, bgcolor=ft.colors.GREY, border_radius=4, opacity=0.3)
+            dot1 = ft.Container(width=8, height=8, bgcolor=ft.Colors.GREY, border_radius=4, opacity=0.3)
+            dot2 = ft.Container(width=8, height=8, bgcolor=ft.Colors.GREY, border_radius=4, opacity=0.3)
+            dot3 = ft.Container(width=8, height=8, bgcolor=ft.Colors.GREY, border_radius=4, opacity=0.3)
             thinking_row = ft.Row([ft.Text("JASC:"), dot1, dot2, dot3], spacing=5)
             chat_area.controls.append(thinking_row)
             page.update()
@@ -107,6 +110,9 @@ def main(page: ft.Page):
                 chat_area.controls.remove(thinking_row)
                 chat_area.controls.append(ft.Text("JASC: "))
                 slowPrint(chat_area.controls[-1], completion.choices[0].message.content)
+                history = [control.value for control in chat_area.controls if isinstance(control, ft.Text)]
+                with open(chat_file, "w") as f:
+                    json.dump(history, f, indent=2)
                 audio_player.pause()
 
             threading.Thread(target=fetch_response, daemon=True).start()
@@ -119,6 +125,13 @@ def main(page: ft.Page):
     )
     send_button.on_click = send_message
     handle_brightness_change(None)
+    
+    if os.path.exists(chat_file):
+        with open(chat_file, "r") as f:
+            messages = json.load(f)
+            for stuff in messages:
+                chat_area.controls.append(ft.Text(stuff))
+                
     page.add(
         ft.Column(
             controls=[
