@@ -1,7 +1,6 @@
 import flet as ft 
 from openai import OpenAI
 import time as time
-import flet_audio as fta
 client = OpenAI(api_key="API KEY")
 import threading
 import json
@@ -33,7 +32,13 @@ def main(page: ft.Page):
 
     page.on_platform_brightness_change = handle_brightness_change
 
-    audio_player = fta.Audio(src="scream.mp3", autoplay=False)
+    def slowPrint(textField, text, callback):
+        textField.value = "JASC: "
+        for i in range(len(text)):
+            textField.value = f"{textField.value}{text[i]}"
+            time.sleep(0.005)
+            page.update()
+        callback()
 
     #!Area con el chat
     chat_area = ft.Column(
@@ -61,7 +66,6 @@ def main(page: ft.Page):
     #! Función para el envío y respuesta de mensajes
     def send_message(e):
         if input_field.value:
-            audio_player.play()
             current_text = input_field.value
             chat_area.controls.append(ft.Text(f"You: {current_text}"))
             page.update()
@@ -107,37 +111,26 @@ def main(page: ft.Page):
                 chat_area.controls.remove(thinking_row)
 
                 ai_response = completion.choices[0].message.content
-                temp_text = ft.Text("")
-                response_row = ft.Row(
-                    controls=[
-                        ft.Text("JASC: "),
-                        temp_text
-                    ],
-                    wrap=True
-                )
-                chat_area.controls.append(response_row)
-                page.update()
 
-                #! Slow print
-                def slow_markdown_print(text, callback):
-                    for i in range(1, len(text) + 1):
-                        temp_text.value = text[:i]
-                        page.update()
-                        time.sleep(0.005)
-                    callback()
+                chat_area.controls.append(ft.Row([ft.Text("")], wrap=True))
+                page.update()
 
                 #! Cuando termina reemplaza por Markdown
                 def finalize_markdown():
-                    response_row.controls[1] = ft.Markdown(ai_response)
+                    chat_area.controls.pop()
+                    chat_area.controls.append(ft.Markdown(f"JASC: {ai_response}"))
                     page.update()
 
-                threading.Thread(target=lambda: slow_markdown_print(ai_response, finalize_markdown), daemon=True).start()
-
+                slowPrint(chat_area.controls[-1].controls[0], ai_response, finalize_markdown)
             
-                history = [control.value for control in chat_area.controls if isinstance(control, ft.Text)]
+                history = [
+                    control.value
+                    for control in chat_area.controls
+                    if isinstance(control, (ft.Text, ft.Markdown))
+                ]
+
                 with open(chat_file, "w") as f:
                     json.dump(history, f, indent=2)
-                audio_player.pause()
 
             threading.Thread(target=fetch_response, daemon=True).start()
 
@@ -154,7 +147,7 @@ def main(page: ft.Page):
         with open(chat_file, "r") as f:
             messages = json.load(f)
             for stuff in messages:
-                chat_area.controls.append(ft.Text(stuff))
+                chat_area.controls.append(ft.Markdown(stuff))
                 
     page.add(
         ft.Column(
@@ -173,8 +166,7 @@ def main(page: ft.Page):
             ],
             expand=True,
             horizontal_alignment=ft.CrossAxisAlignment.STRETCH,
-        ),
-        audio_player
+        )
     )
 
 ft.app(target=main, assets_dir="assets")

@@ -1,16 +1,10 @@
 [
-  "You: Hello :D",
-  "JASC: Hi there! :D How can I assist you today?",
-  "You: My name is Sonic.",
-  "JASC: Nice to meet you, Sonic! How can I help you today? Are there any particular issues or questions you have in mind?",
-  "You: How can I do math?",
-  "JASC: Doing math effectively involves a few key steps that can help you approach problems with confidence. Here are some tips to get you started:\n\n1. **Understand the Basics**: Make sure you have a good grasp of fundamental concepts, as these are the building blocks for more complex topics.\n\n2. **Practice Regularly**: Consistent practice helps solidify your understanding and improve your problem-solving skills. Try to work on a variety of problems to cover different aspects of math.\n\n3. **Break Down Problems**: For complex problems, break them down into smaller, more manageable parts. Solve each part step by step.\n\n4. **Show Your Work**: Write down each step as you solve a problem. This helps you track your thought process and makes it easier to spot any mistakes.\n\n5. **Use Resources**: Don't hesitate to use textbooks, online resources, or ask for help from teachers or peers when you're stuck.\n\n6. **Check Your Answers**: After solving a problem, go back and verify your solution to ensure it's correct.\n\n7. **Stay Curious and Patient**: Math can be challenging, so be patient with yourself and maintain a curious mindset.\n\nIf there's a specific area or problem you're having trouble with, let me know, and I can offer more targeted advice!",
-  "You: Hi :D",
-  "JASC: How's everything going? Is there anything specific you need help with today?",
-  "You: What's my name?",
-  "JASC: I'm sorry, I don't have access to personal data like your name. However, if you let me know what you\u2019d like to be called, I can definitely use that name in our conversation!",
-  "You: I want to be called Sonic.",
-  "JASC: Got it, Sonic! If there's anything you're working on or need help with today, feel free to ask. I'm here to assist you!",
-  "You: What do I want to be called?",
-  "JASC: You mentioned that you'd like to be called Sonic. If that's still your preference, I'm happy to use that name for you! If you've changed your mind or have a different preference, just let me know."
+  "You: cool",
+  "JASC: Thanks! If there's anything specific you'd like to discuss or need help with, feel free to let me know. I'm here to help!",
+  "You: write something in bold",
+  "JASC: To write something in bold, you can use a pair of asterisks or underscores around the text if you're using Markdown. For example, `**text**` or `__text__` will make the word appear in bold when the Markdown is rendered. If you're using a word processor like Microsoft Word, you can select the text and press \"Ctrl + B\" on your keyboard to make it bold. Try it out with the text you want to bold!",
+  "You: what did i ask?",
+  "JASC: I don't have the ability to recall previous interactions, so I can't remember what you asked earlier. However, you can repeat your question or provide more details, and I'll do my best to help you with it!",
+  "You: write me some text in bold, write \"I am cool\" in bold",
+  "JASC: To write the text \"I am cool\" in bold, you can use Markdown syntax by enclosing the text with double asterisks. For example: **I am cool**. If you're using a different platform, the method might vary, so checking the specific syntax for that platform could be helpful."
 ]
