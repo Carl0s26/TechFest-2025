@@ -1,10 +1,6 @@
 [
-  "You: cool",
-  "JASC: Thanks! If there's anything specific you'd like to discuss or need help with, feel free to let me know. I'm here to help!",
-  "You: write something in bold",
-  "JASC: To write something in bold, you can use a pair of asterisks or underscores around the text if you're using Markdown. For example, `**text**` or `__text__` will make the word appear in bold when the Markdown is rendered. If you're using a word processor like Microsoft Word, you can select the text and press \"Ctrl + B\" on your keyboard to make it bold. Try it out with the text you want to bold!",
-  "You: what did i ask?",
-  "JASC: I don't have the ability to recall previous interactions, so I can't remember what you asked earlier. However, you can repeat your question or provide more details, and I'll do my best to help you with it!",
-  "You: write me some text in bold, write \"I am cool\" in bold",
-  "JASC: To write the text \"I am cool\" in bold, you can use Markdown syntax by enclosing the text with double asterisks. For example: **I am cool**. If you're using a different platform, the method might vary, so checking the specific syntax for that platform could be helpful."
+  "You: what is your name/",
+  "JASC: My name is JASC, and I'm here to help you with any issues or questions you might have!",
+  "You: what does jasc mean?",
+  "JASC: JASC is simply a name given to me by my creators, Sebastian Varillas, Carlos Kepp, Juneilis Hernandez, and Ana Jeandry. It doesn't stand for anything specific, but it's meant to reflect my purpose of being a helpful assistant."
 ]

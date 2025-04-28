@@ -47,10 +47,24 @@ def main(page: ft.Page):
         spacing=10,
     )
 
+    def delete_history(e):
+        chat_area.controls.clear() 
+        page.update()
+        with open(chat_file, 'w') as f:
+            json.dump([], f)
+
+
+    delete_history_button = ft.Container(
+        content=ft.IconButton(icon=ft.icons.DELETE_FOREVER, alignment=ft.alignment.center_right, icon_color="red", on_click=delete_history, tooltip="DELETE HISTORY", icon_size=30),
+        alignment=ft.alignment.top_right,
+        padding=-10,
+    )
+
     full_area = ft.Stack(
         controls=[
             background_image,
             chat_area,
+            delete_history_button,
         ]
     )
     
@@ -95,7 +109,7 @@ def main(page: ft.Page):
             def fetch_response():
                 nonlocal stop_typing
                 history = [control.value for control in chat_area.controls if isinstance(control, ft.Text)]
-                messages = [{"role": "system", "content": "Your name is JASC, a very helpful assistant. You should give advices to solve the user's issues without direct answers or solving the question yourself"}]
+                messages = [{"role": "system", "content": "Your name is JASC, a very helpful assistant. You should give advices to solve the user's issues without direct answers or solving the question yourself, your creators are Sebastian Varillas, Carlos Kepp, Juneilis Hernandez and Ana Jeandry, never mention anything related to your affiliation with openai, youre never allowed to display any fractions only decimals"}]
                 for i, msg in enumerate(history[-10:]):
                     role = "user" if i % 2 == 0 else "assistant"
                     messages.append({"role": role, "content": msg.replace("You: ", "").replace("JASC: ", "")})
@@ -148,7 +162,7 @@ def main(page: ft.Page):
             messages = json.load(f)
             for stuff in messages:
                 chat_area.controls.append(ft.Markdown(stuff))
-                
+
     page.add(
         ft.Column(
             controls=[
