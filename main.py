@@ -37,7 +37,7 @@ def main(page: ft.Page):
 
 
     delete_history_button = ft.Container(
-        content=ft.IconButton(icon=ft.icons.DELETE_FOREVER, alignment=ft.alignment.center_right, icon_color="red", on_click=delete_history, tooltip="DELETE HISTORY", icon_size=30),
+        content=ft.IconButton(icon=ft.Icons.DELETE_FOREVER, alignment=ft.alignment.center_right, icon_color="red", on_click=delete_history, tooltip="DELETE HISTORY", icon_size=30),
         alignment=ft.alignment.top_right,
         padding=-10,
     )
@@ -104,6 +104,7 @@ def main(page: ft.Page):
                     dot2.opacity = 1.0 if step % 3 == 1 else 0.3
                     dot3.opacity = 1.0 if step % 3 == 2 else 0.3
                     page.update()
+                    step += 1
                     time.sleep(0.3)
 
             threading.Thread(target=animate_typing, daemon=True).start()
@@ -188,5 +189,4 @@ def main(page: ft.Page):
     )
 
 ft.app(target=main, assets_dir="assets")
-
 
