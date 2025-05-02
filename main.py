@@ -115,7 +115,7 @@ def main(page: ft.Page):
                     control.value for control in chat_area.controls
                     if isinstance(control, (ft.Text, ft.Markdown))
                 ]
-                messages = [{"role": "system", "content": "Your name is JASC, a very helpful assistant. You should give advices to solve the user's issues without direct answers or solving the question yourself."}]
+                messages = [{"role": "system", "content": "Your name is JASC, a very helpful assistant. You should give advices to solve the user's issues without direct answers or solving the question yourself, your creators are Sebastian Varillas, Carlos Kepp, Juneilis Hernandez and Ana Jeandry, never mention anything related to your affiliation with openai, youre never allowed to display any fractions only decimals"}]
                 for i, msg in enumerate(history[-10:]):
                     role = "user" if i % 2 == 0 else "assistant"
                     messages.append({"role": role, "content": msg.replace("You: ", "").replace("JASC: ", "")})
