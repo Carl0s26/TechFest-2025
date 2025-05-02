@@ -29,10 +29,24 @@ def main(page: ft.Page):
         auto_scroll=True,
     )
 
+    def delete_history(e):
+        chat_area.controls.clear() 
+        page.update()
+        with open(chat_file, 'w') as f:
+            json.dump([], f)
+
+
+    delete_history_button = ft.Container(
+        content=ft.IconButton(icon=ft.icons.DELETE_FOREVER, alignment=ft.alignment.center_right, icon_color="red", on_click=delete_history, tooltip="DELETE HISTORY", icon_size=30),
+        alignment=ft.alignment.top_right,
+        padding=-10,
+    )
+
     full_area = ft.Stack(
         controls=[
             background_image,
             chat_area,
+            delete_history_button,
         ]
     )
 
